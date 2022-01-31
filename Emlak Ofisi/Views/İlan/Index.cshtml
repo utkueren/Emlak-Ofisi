@@ -1,0 +1,78 @@
+﻿@model  IEnumerable <Emlak_Ofisi.Models.İlan>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="row" style="padding-bottom:200px;">
+        @Html.Action("PartialFiltre", "Home")
+
+        <div class="col-md-9">
+            <br />
+
+            <br />
+            <br />
+            <table class="table">
+                <tr>
+                    <th>
+                        Mahalle
+                    </th>
+                    <th>
+                        Tip
+                    </th>
+
+
+                    <th>
+                        Adres
+                    </th>
+
+                    <th>
+                        Şehir
+                    </th>
+                    <th>
+                        Semt
+                    </th>
+                    <th>
+                        Durum
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mahalle.MahalleAd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tip.TipAd)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adres)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mahalle.Semt.Sehir.SehirAd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mahalle.Semt.SemtAd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tip.Durum.DurumAd)
+                        </td>
+                        <td>
+                            <a class="btn btn-success" href="@Url.Action("Images", new { id = item.İlanId })">Resim Ekle</a>
+                            <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.İlanId })">Düzenle</a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.İlanId })">Sil</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+
+
+        </div>
+    </div>
+</div>

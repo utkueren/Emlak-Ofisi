@@ -1,0 +1,8 @@
+﻿
+@model IEnumerable<Emlak_Ofisi.Models.Durum>
+@foreach (var item in Model)
+{
+    <a href="/Home/DurumList/@item.DurumId">@item.DurumAd</a>
+
+    
+}

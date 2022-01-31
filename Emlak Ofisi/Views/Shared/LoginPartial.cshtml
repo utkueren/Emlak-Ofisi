@@ -1,0 +1,38 @@
+﻿<ul class="nav navbar-nav navbar-right" style="padding: 5px;">
+    @if (Request.IsAuthenticated)
+    {
+        if (this.User.IsInRole("admin"))
+        {
+            <li style="padding-top: 5px;"><a style="color: wheat; padding: 15px; text-decoration: none;" href="/Admin/Index">Admin Paneli</a></li>
+            <li style="padding-top: 5px;"><a style="color: wheat; padding: 15px; text-decoration: none;" href="/İlan/Index">@User.Identity.Name</a></li>
+            <li style="padding-top: 5px;"><a style="color: wheat; padding: 15px;  text-decoration: none;" href="/Account/Profil">Profil</a></li>
+
+            <div class="nav navbar-nav navbar-right d-flex">
+            <li style="padding-right:10px;"><a href="/Account/LogOut" class="btn btn-danger"><i class="fa fa-remove" style="padding-right: 2px;"></i>Çıkış</a></li>
+            <li style="padding-right:10px;"><a href="/İlan/Create" class="btn btn-success"><i class="fa fa-sign-in" style="padding-right: 4px;"></i>İlan Ver</a></li>
+
+            </div>
+        }
+        else
+        {
+            <li style="padding-top: 5px;"><a style="color: wheat; padding: 15px; text-decoration: none;" href="/İlan/Index">@User.Identity.Name</a></li>
+            <li style="padding-top: 5px;"><a style="color: wheat; padding: 15px;  text-decoration: none;" href="/Account/Profil">Profil</a></li>
+
+            <div class="nav navbar-nav navbar-right d-flex">
+            <li style="padding-right:10px;"><a href="/Account/LogOut" class="btn btn-danger"><i class="fa fa-remove" style="padding-right: 2px;"></i>Çıkış</a></li>
+            <li style="padding-right:10px;"><a href="/İlan/Create" class="btn btn-success"><i class="fa fa-sign-in" style="padding-right: 4px;"></i>İlan Ver</a></li>
+            </div>
+        }
+     }
+
+    else
+    {
+        <div class="nav navbar-nav navbar-right d-flex">
+        <li style="padding-right:10px;"><a href="/Account/Register" class="btn btn-primary"><i class="fa fa-user-plus" style="padding-right: 2px;"></i>Üye Ol</a></li>
+        <li style="padding-right:10px;"><a href="/Account/Login" class="btn btn-success"><i class="fa fa-sign-in" style="padding-right: 4px;"></i>Giriş</a></li>
+        <li><a href="/Account/Login" class="btn btn-primary">İlan Ver</a></li>
+
+        </div>
+    }
+
+</ul>

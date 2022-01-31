@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Emlak_Ofisi.Models.İlan>
+@{
+    ViewBag.Title = "DurumList";
+}
+
+<div class=" text-center bg-image"
+     style="
+          background-image: url('../../images/3.jpg');
+          height: 400px;
+        ">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); width: 100%; height:100%;">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-3">Heading</h1>
+                <h4 class="mb-3">Subheading</h4>
+                <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        @Html.Action("PartialFiltre", "Home")
+
+        <div class="col-md-9">
+            <!--İlan Listesi-->
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-top: 17px; padding-bottom: 10px;">
+                @foreach (var item in Model)
+                {
+
+                    var c = 1;
+
+                    <div class="col">
+                        <div class="card">
+                            @foreach (var rsm in ViewBag.imgs)
+                            {
+                                if (rsm.İlanId == item.İlanId)
+                                {
+                                    if (@c == 1)
+                                    {
+                                        <a href="/Home/Detay/@item.İlanId"><img src="~/images/@rsm.ResimAd" class="card-img-top" alt="..." style="height: 300px;"></a>
+                                        c++;
+                                    }
+
+                                }
+                            }
+
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>@item.Tip.Durum.DurumAd (@item.Tip.TipAd)</strong></h5>
+                                <p class="card-text">@item.Mahalle.Semt.Sehir.SehirAd - @item.Mahalle.Semt.SemtAd</p>
+
+                                <button href="#" class="btn btn-primary">@item.Fiyat</button>
+                                <button href="#" class="btn btn-success">@item.Alan m<sup>2</sup></button>
+                                <button href="#" class="btn btn-success pull-right">@item.OdaSayisi Oda</button>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <!--İlan Listesi-->
+        </div>
+    </div>
+</div>
+

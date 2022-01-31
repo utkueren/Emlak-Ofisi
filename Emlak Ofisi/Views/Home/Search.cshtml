@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Emlak_Ofisi.Models.İlan>
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="container">
+    <div class="row" style="padding-bottom:110px;">
+        @Html.Action("PartialFiltre", "Home")
+
+        <div class="col-md-9">
+            <!--İlan Listesi-->
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-top: 17px; padding-bottom: 10px;">
+                @foreach (var item in Model)
+                {
+
+                    var c = 1;
+
+                    <div class="col">
+                        <div class="card">
+                            @foreach (var rsm in ViewBag.imgs)
+                            {
+                                if (rsm.İlanId == item.İlanId)
+                                {
+                                    if (@c == 1)
+                                    {
+                                        <a href="/Home/Detay/@item.İlanId"><img src="../images/@rsm.ResimAd" class="card-img-top" alt="..." style="height: 300px;"></a>
+                                        c++;
+                                    }
+
+                                }
+                            }
+
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>@item.Tip.Durum.DurumAd (@item.Tip.TipAd)</strong></h5>
+                                <p class="card-text">@item.Mahalle.Semt.Sehir.SehirAd - @item.Mahalle.Semt.SemtAd</p>
+
+                                <button href="#" class="btn btn-primary">@item.Fiyat</button>
+                                <button href="#" class="btn btn-success">@item.Alan m<sup>2</sup></button>
+                                <button href="#" class="btn btn-success pull-right">@item.OdaSayisi Oda</button>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <!--İlan Listesi-->
+        </div>
+    </div>
+</div>
+
+
